@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SampleProject.Pages.MainPage">
+
+    <StackLayout>
+        <Grid BackgroundColor="Gray" Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0" Text="Total Volume"/>
+            <Label Grid.Column="1" Text="{Binding VolumeSum}"/>
+            <Label Grid.Column="2" Text="Total"/>
+            <Label Grid.Column="3" Text="{Binding TotalSum}"/>
+        </Grid>
+
+
+        <Grid HorizontalOptions="Fill" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Price"/>
+            <Label Grid.Column="1" Text="Volume"/>
+            <Label Grid.Column="2" Text="Total"/>
+        </Grid>
+
+        <ListView ItemsSource="{Binding GroupedData}" VerticalOptions="Fill"  SeparatorColor="Black">
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <ViewCell>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Text="{Binding Price}"/>
+                                <Label Grid.Column="1" Text="{Binding VolumeSum}"/>
+                                <Label Grid.Column="2" Text="{Binding TotalSum}"/>
+                            </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
