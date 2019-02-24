@@ -1,5 +1,6 @@
 ﻿using SampleProject.Model;
 using SampleProject.Service;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -31,11 +32,11 @@ namespace SampleProject.ViewModel
             GroupedData = new ObservableCollection<ResultData>(Info.Bids.GroupBy(b => b.Price).Select(x => new ResultData
             {
                 Price = x.Key,
-                VolumeSum = Bids.Sum(y => y.Volume),
-                TotalSum = Bids.Sum(y => y.Total)
+                VolumeSum = Bids.Where(v => v.Price == x.Key).Sum(y => Math.Round(y.Volume, 3)),
+                TotalSum = Bids.Where(v => v.Price == x.Key).Sum(y => Math.Round(y.Total, 3))
             }));
-            VolumeSum = GroupedData.Sum(x => x.VolumeSum);
-            TotalSum = GroupedData.Sum(x => x.TotalSum);
+            VolumeSum = GroupedData.Sum(x => Math.Round(x.VolumeSum, 3));
+            TotalSum = GroupedData.Sum(x => Math.Round(x.TotalSum, 3));
         }
 
 
